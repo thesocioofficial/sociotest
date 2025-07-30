@@ -1,9 +1,9 @@
 # Railway Configuration for Backend Deployment
-# This file tells Railway to deploy only the server directory
-
 [build]
   command = "cd server && npm install"
 
 [deploy]
   startCommand = "cd server && npm start"
-  workingDirectory = "server"
+
+# Ensure variables are available
+[variables]

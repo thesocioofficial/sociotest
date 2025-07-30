@@ -15,10 +15,16 @@ console.log("NODE_ENV:", process.env.NODE_ENV);
 console.log("Railway Environment Variables:");
 console.log("RAILWAY_ENVIRONMENT:", process.env.RAILWAY_ENVIRONMENT);
 console.log("RAILWAY_PROJECT_ID:", process.env.RAILWAY_PROJECT_ID ? "Set" : "Missing");
+console.log("PWD:", process.env.PWD);
+console.log("Total ENV vars count:", Object.keys(process.env).length);
+console.log("All ENV var keys:", Object.keys(process.env).sort().join(", "));
 console.log("All ENV vars starting with SUPABASE:");
 Object.keys(process.env)
   .filter(key => key.startsWith('SUPABASE'))
   .forEach(key => console.log(`${key}:`, process.env[key] ? `Set (${process.env[key].substring(0, 20)}...)` : "Missing"));
+console.log("Direct access test:");
+console.log("process.env.SUPABASE_URL:", process.env.SUPABASE_URL || "UNDEFINED");
+console.log("process.env.SUPABASE_SERVICE_ROLE_KEY:", process.env.SUPABASE_SERVICE_ROLE_KEY || "UNDEFINED");
 console.log("=== END DEBUG ===");
 
 console.log("Supabase Client Config:");
