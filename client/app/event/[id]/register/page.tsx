@@ -25,11 +25,9 @@ interface FormErrors {
   }>;
 }
 
-interface PageProps {
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
+// Removed PageProps interface as it conflicts with Next.js 15 types
 
-const Page = ({}: PageProps) => {
+const Page = () => {
   const routeParams = useParams();
   const router = useRouter();
   const { userData, isLoading: authIsLoading } = useAuth();
