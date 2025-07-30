@@ -1,0 +1,13 @@
+{
+  "name": "socio-backend",
+  "version": "1.0.0",
+  "description": "SOCIO Backend Server for Railway Deployment",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "cd server && npm start",
+    "install": "cd server && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
