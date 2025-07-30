@@ -12,6 +12,13 @@ import registrationRoutes from "./routes/registrationRoutes.js";
 
 dotenv.config();
 
+// Debug environment variables for Railway
+console.log("Environment Variables:");
+console.log("PORT:", process.env.PORT);
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("SUPABASE_URL:", process.env.SUPABASE_URL ? "Set" : "Not set");
+console.log("SUPABASE_SERVICE_ROLE_KEY:", process.env.SUPABASE_SERVICE_ROLE_KEY ? "Set" : "Not set");
+
 const app = express();
 app.use(express.json());
 app.use(cors());
