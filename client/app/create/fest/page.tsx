@@ -699,22 +699,39 @@ const FullPageSpinner: React.FC<{ text: string }> = ({ text }) => (
   </div>
 );
 
-export default function CreateFest() {
+interface CreateFestProps {
+  title?: string;
+  openingDate?: string;
+  closingDate?: string;
+  detailedDescription?: string;
+  department?: string[];
+  category?: string;
+  contactEmail?: string;
+  contactPhone?: string;
+  eventHeads?: string[];
+  organizingDept?: string;
+  isEditMode?: boolean;
+  existingImageFileUrl?: string | null;
+  existingBannerFileUrl?: string | null;
+  existingPdfFileUrl?: string | null;
+}
+
+export default function CreateFest(props: CreateFestProps = {}) {
   // Initialize default values
-  const title = "";
-  const openingDate = "";
-  const closingDate = "";
-  const detailedDescription = "";
-  const department: string[] = [];
-  const category = "";
-  const contactEmail = "";
-  const contactPhone = "";
-  const organizingDept = "";
-  const initialEventHeads: string[] = [];
-  const isEditMode = false;
-  const existingImageFileUrl: string | null = null;
-  const existingBannerFileUrl: string | null = null;
-  const existingPdfFileUrl: string | null = null;
+  const title = props.title || "";
+  const openingDate = props.openingDate || "";
+  const closingDate = props.closingDate || "";
+  const detailedDescription = props.detailedDescription || "";
+  const department: string[] = props.department || [];
+  const category = props.category || "";
+  const contactEmail = props.contactEmail || "";
+  const contactPhone = props.contactPhone || "";
+  const organizingDept = props.organizingDept || "";
+  const initialEventHeads: string[] = props.eventHeads || [];
+  const isEditMode = props.isEditMode || false;
+  const existingImageFileUrl: string | null = props.existingImageFileUrl || null;
+  const existingBannerFileUrl: string | null = props.existingBannerFileUrl || null;
+  const existingPdfFileUrl: string | null = props.existingPdfFileUrl || null;
 
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
