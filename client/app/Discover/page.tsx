@@ -13,6 +13,8 @@ import {
   FetchedEvent as ContextFetchedEvent,
 } from "../../context/EventContext";
 
+const API_URL = "https://sociotest-production.up.railway.app";
+
 interface Fest {
   id: number;
   fest_id: string;
@@ -61,7 +63,7 @@ const DiscoverPage = () => {
       setIsLoadingFests(true);
       setErrorFests(null);
       try {
-        const response = await fetch("http://localhost:8000/api/fests");
+        const response = await fetch(`${API_URL}/api/fests`);
         if (!response.ok) {
           throw new Error(
             `Network response for fests was not ok: ${response.status} ${response.statusText}`
