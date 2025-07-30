@@ -1,0 +1,12 @@
+# Railway Configuration
+# This file helps Railway understand your project structure
+
+[build]
+  command = "npm install"
+
+[deploy]
+  startCommand = "npm start"
+  healthcheckPath = "/api/health"
+
+[env]
+  PORT = "3001"

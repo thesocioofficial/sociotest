@@ -16,6 +16,15 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ 
+    status: "OK", 
+    message: "Server is running",
+    timestamp: new Date().toISOString()
+  });
+});
+
 app.use("/api/users", userRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/fests", festRoutes);
