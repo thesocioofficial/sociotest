@@ -7,6 +7,4 @@
 [deploy]
   startCommand = "cd server && npm start"
   healthcheckPath = "/api/health"
-
-[env]
-  PORT = "8000"
+  healthcheckTimeout = 300

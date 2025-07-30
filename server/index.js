@@ -21,6 +21,17 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ 
     status: "OK", 
     message: "Server is running",
+    timestamp: new Date().toISOString(),
+    port: process.env.PORT || 8000,
+    environment: process.env.NODE_ENV || "development"
+  });
+});
+
+// Root health check (backup)
+app.get("/", (req, res) => {
+  res.status(200).json({ 
+    status: "OK", 
+    message: "SOCIO Backend Server is running",
     timestamp: new Date().toISOString()
   });
 });
@@ -169,6 +180,7 @@ cron.schedule(
 );
 
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
+  console.log(`Health check available at: http://0.0.0.0:${PORT}/api/health`);
 });
