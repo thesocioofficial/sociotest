@@ -66,6 +66,7 @@ const getRandomEvents = (
 const transformToEventCardData = (event: FetchedEvent): EventForCard => {
   return {
     id: event.id,
+    event_id: event.event_id || String(event.id),
     title: event.title,
     fest: event.fest,
     date: event.event_date,
@@ -189,10 +190,10 @@ export default async function RootLayout({
       >
         <AuthProvider>
           <EventsProvider
-            initialAllEvents={allEvents}
-            initialCarouselEvents={carouselEvents}
-            initialTrendingEvents={trendingEvents}
-            initialUpcomingEvents={upcomingEvents}
+            initialAllEvents={allEvents as any}
+            initialCarouselEvents={carouselEvents as any}
+            initialTrendingEvents={trendingEvents as any}
+            initialUpcomingEvents={upcomingEvents as any}
             initialIsLoading={isLoading}
             initialError={error}
           >
