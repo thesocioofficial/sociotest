@@ -10,6 +10,9 @@ import {
   CarouselDisplayImage,
 } from "../context/EventContext";
 
+// Force dynamic rendering for this layout
+export const dynamic = 'force-dynamic';
+
 const DMSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
@@ -105,7 +108,7 @@ async function getInitialEventsData() {
 
   try {
     const response = await fetch("http://localhost:8000/api/events", {
-      cache: "no-store",
+      cache: "force-cache",
     });
 
     if (!response.ok) {

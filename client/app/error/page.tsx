@@ -2,10 +2,11 @@
 
 import { useAuth } from "@/context/AuthContext";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 const ALLOWED_DOMAIN = "christuniversity.in";
 
-export default function BeepPage() {
+function ErrorPageContent() {
   const { signInWithGoogle, isLoading } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -114,5 +115,13 @@ export default function BeepPage() {
         </a>
       </div>
     </div>
+  );
+}
+
+export default function BeepPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <ErrorPageContent />
+    </Suspense>
   );
 }
