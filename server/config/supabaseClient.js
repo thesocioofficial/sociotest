@@ -7,8 +7,16 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+// Fallback to hardcoded values if Railway environment variables are not available  
+// WARNING: This is a temporary fix - Railway should inject these variables
+const supabaseUrl = process.env.SUPABASE_URL || 'https://tdxwomjznjgacfirujzb.supabase.co';
+// Using the service role key from your Railway dashboard
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkeHdvbWp6bmpnYWNmaXJ1anpiIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczODQwMzMwNSwiZXhwIjoyMDUzOTc5MzA1fQ.nN3d6u8+RGq0VpsTSzDMCY5JdgPHCz9dpkYGMRSWL4';
+
+if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  console.warn("⚠️  WARNING: Using fallback Supabase credentials - Railway environment variables not detected!");
+  console.warn("⚠️  Please check Railway dashboard Variables tab to ensure SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are set");
+}
 
 console.log("=== RAILWAY ENVIRONMENT DEBUG ===");
 console.log("NODE_ENV:", process.env.NODE_ENV);
