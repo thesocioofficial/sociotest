@@ -669,25 +669,7 @@ function DepartmentAndCategoryInputs({
   );
 }
 
-interface CreateFestProps {
-  title?: string;
-  openingDate?: string;
-  closingDate?: string;
-  detailedDescription?: string;
-  department?: string[];
-  category?: string;
-  contactEmail?: string;
-  contactPhone?: string;
-  eventHeads?: string[];
-  scheduleItems?: { time: string; activity: string }[];
-  rules?: string[];
-  prizes?: string[];
-  organizingDept?: string;
-  isEditMode?: boolean;
-  existingImageFileUrl?: string | null;
-  existingBannerFileUrl?: string | null;
-  existingPdfFileUrl?: string | null;
-}
+// Removed CreateFestProps interface since page components don't accept props
 
 const FullPageSpinner: React.FC<{ text: string }> = ({ text }) => (
   <div className="fixed inset-0 bg-white z-[110] flex items-center justify-center">
@@ -717,23 +699,23 @@ const FullPageSpinner: React.FC<{ text: string }> = ({ text }) => (
   </div>
 );
 
-export default function CreateFest({
-  title = "",
-  openingDate = "",
-  closingDate = "",
-  detailedDescription = "",
-  department = [],
-  category = "",
-  contactEmail = "",
-  contactPhone = "",
-  organizingDept = "",
-  eventHeads: initialEventHeads = [],
-  // New props for edit mode
-  isEditMode = false,
-  existingImageFileUrl,
-  existingBannerFileUrl,
-  existingPdfFileUrl,
-}: CreateFestProps) {
+export default function CreateFest() {
+  // Initialize default values
+  const title = "";
+  const openingDate = "";
+  const closingDate = "";
+  const detailedDescription = "";
+  const department: string[] = [];
+  const category = "";
+  const contactEmail = "";
+  const contactPhone = "";
+  const organizingDept = "";
+  const initialEventHeads: string[] = [];
+  const isEditMode = false;
+  const existingImageFileUrl: string | null = null;
+  const existingBannerFileUrl: string | null = null;
+  const existingPdfFileUrl: string | null = null;
+
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [errors, setErrors] = useState<Record<string, string | undefined>>({});
