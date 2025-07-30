@@ -288,7 +288,7 @@ const DiscoverPage = () => {
               trendingEventsDataFromContext.length > 0 ? (
                 <EventsSection
                   title="Trending events"
-                  events={trendingEventsDataFromContext}
+                  events={trendingEventsDataFromContext as any}
                   baseUrl="event"
                 />
               ) : (
@@ -314,7 +314,7 @@ const DiscoverPage = () => {
           {!isLoadingFests && !errorFests && (
             <FestsSection
               title="Upcoming fests"
-              fests={upcomingFests || []}
+              fests={(upcomingFests || []) as any}
               showAll={true}
               baseUrl="fest"
             />
@@ -344,7 +344,7 @@ const DiscoverPage = () => {
             upcomingEventsDataFromContext.length > 0 ? (
               <EventsSection
                 title="Upcoming events"
-                events={upcomingEventsDataFromContext}
+                events={upcomingEventsDataFromContext as any}
                 showAll={false}
                 baseUrl="event"
               />

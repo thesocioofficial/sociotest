@@ -4,14 +4,14 @@ import { SectionHeader } from "./SectionHeader";
 import moment from "moment";
 
 interface Fest {
-  fest_id: number;
-  fest_title: string;
-  organizing_dept: string;
+  id: number;
+  fest_id: string;
+  title: string;
+  opening_date: string;
+  closing_date: string;
   description: string;
-  dateRange: string;
   fest_image_url: string;
-  opening_date: Date;
-  closing_date: Date;
+  organizing_dept: string;
 }
 
 interface FestsSectionProps {
@@ -35,7 +35,7 @@ export const FestsSection = ({
         {fests.map((fest) => (
           <FestCard
             key={fest.fest_id}
-            title={fest.fest_title}
+            title={fest.title}
             dept={fest.organizing_dept}
             description={fest.description}
             dateRange={
