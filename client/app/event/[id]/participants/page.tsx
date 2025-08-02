@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import ExcelJS from "exceljs";
+import { getApiUrl } from "../../../lib/config";
 
 interface Student {
   id: number;
@@ -35,11 +36,7 @@ export default function StudentsPage() {
       setIsDataLoading(true);
       setError(null);
       try {
-        const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
-        if (!apiBaseUrl) {
-          throw new Error("API endpoint is not configured.");
-        }
-        const apiUrl = `${apiBaseUrl}/api/registrations?event_id=${event_id}`;
+        const apiUrl = getApiUrl(`/api/registrations?event_id=${event_id}`);
         const response = await fetch(apiUrl);
         if (!response.ok) {
           let errorMessage = `Error: ${response.status} ${response.statusText}`;
