@@ -5,8 +5,8 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Session, User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://sociotest-production.up.railway.app";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://sociotest-thesocioofficial.vercel.app";
 const ALLOWED_DOMAIN = "christuniversity.in"; // Keep for client-side checks if needed
 
 type UserData = {

@@ -107,7 +107,7 @@ async function getInitialEventsData() {
   let error: string | null = null;
 
   try {
-    const response = await fetch("http://localhost:8000/api/events", {
+    const response = await fetch("https://sociotest-production.up.railway.app/api/events", {
       cache: "force-cache",
     });
 
