@@ -108,7 +108,7 @@ async function getInitialEventsData() {
 
   try {
     const response = await fetch("https://sociotest-production.up.railway.app/api/events", {
-      cache: "force-cache",
+      cache: "no-cache", // Changed from force-cache to no-cache for debugging
     });
 
     if (!response.ok) {
@@ -117,7 +117,19 @@ async function getInitialEventsData() {
         const errorData = await response.json();
         errorMsg = errorData.message || errorData.detail || errorMsg;
       } catch (jsonError) {}
-      throw new Error(errorMsg);
+      
+      // Log the error but don't throw - provide fallback data instead
+      console.error("API Error:", errorMsg);
+      
+      // Return empty data instead of throwing
+      return {
+        allEvents: [],
+        carouselEvents: [],
+        trendingEvents: [],
+        upcomingEvents: [],
+        isLoading: false,
+        error: `Backend API Error: ${errorMsg}`,
+      };
     }
 
     const data = await response.json();
