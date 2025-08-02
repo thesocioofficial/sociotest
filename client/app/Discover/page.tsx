@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { EventsSection } from "../_components/Discover/EventsSection";
 import { FullWidthCarousel } from "../_components/Discover/ImageCarousel";
 import { FestsSection } from "../_components/Discover/FestSection";
@@ -34,6 +36,11 @@ interface Category {
 }
 
 const DiscoverPage = () => {
+  const router = useRouter();
+  const supabase = createClientComponentClient();
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
+
   const {
     carouselEvents: carouselEventsDataFromContext,
     trendingEvents: trendingEventsDataFromContext,
@@ -42,6 +49,58 @@ const DiscoverPage = () => {
     error: errorEventsFromContext,
     allEvents,
   } = useEvents();
+
+  // Check authentication status
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (error) {
+          console.error("Auth check error:", error);
+          setAuthError("Authentication error occurred");
+          setTimeout(() => router.push("/"), 2000);
+          return;
+        }
+
+        if (!session) {
+          console.log("No session found, redirecting to home");
+          router.push("/");
+          return;
+        }
+
+        if (!session.user?.email?.endsWith("christuniversity.in")) {
+          console.log("Invalid domain, redirecting to error");
+          router.push("/error?error=invalid_domain");
+          return;
+        }
+
+        console.log("Auth check passed for:", session.user.email);
+        setIsAuthChecked(true);
+      } catch (error) {
+        console.error("Unexpected auth error:", error);
+        setAuthError("An unexpected error occurred");
+        setTimeout(() => router.push("/"), 2000);
+      }
+    };
+
+    checkAuth();
+  }, [router, supabase]);
+
+  // Show loading while checking auth
+  if (!isAuthChecked) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#154CB3] mx-auto mb-4"></div>
+          <p className="text-gray-600">Verifying authentication...</p>
+          {authError && (
+            <p className="text-red-600 mt-2">{authError}</p>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   const [selectedCampus, setSelectedCampus] = useState("Central Campus (Main)");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
