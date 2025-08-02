@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { getApiUrl } from "../../lib/config";
 
 const MAX_FILE_SIZE_BANNER = 2 * 1024 * 1024; // 2MB
 const MAX_FILE_SIZE_IMAGE = 3 * 1024 * 1024; // 3MB
@@ -271,7 +272,7 @@ export const categories = [
 
 let res;
 try {
-  const response = await fetch("http://localhost:8000/api/fests");
+  const response = await fetch(getApiUrl("/api/fests"));
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }

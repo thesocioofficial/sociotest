@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import moment from "moment";
+import { getApiUrl } from "../../lib/config";
 
 import { FestCard } from "../_components/Discover/FestCard";
 import Footer from "../_components/Home/Footer";
@@ -37,7 +38,7 @@ const FestsPage = () => {
 
   const [allFests, setAllFests] = useState<Fest[]>([]);
   useEffect(() => {
-    fetch("http://localhost:8000/api/fests")
+    fetch(getApiUrl("/api/fests"))
       .then((res) => res.json())
       .then((data) => {
         // Assuming the API returns { fests: Fest[] }

@@ -14,8 +14,9 @@ import {
   useEvents,
   FetchedEvent as ContextFetchedEvent,
 } from "../../context/EventContext";
+import { config, getApiUrl } from "../../lib/config";
 
-const API_URL = "https://sociotest-production.up.railway.app";
+const API_URL = config.API_URL;
 
 interface Fest {
   id: number;

@@ -8,6 +8,7 @@ import {
   FetchedEvent as ContextFetchedEvent,
 } from "../../../../context/EventContext";
 import { useAuth } from "../../../../context/AuthContext";
+import { getApiUrl } from "../../../../lib/config";
 import moment from "moment";
 
 interface Teammate {
@@ -274,7 +275,7 @@ const Page = () => {
       };
 
       try {
-        const response = await fetch(`http://localhost:8000/api/register`, {
+        const response = await fetch(getApiUrl("/api/register"), {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

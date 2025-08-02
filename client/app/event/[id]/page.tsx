@@ -7,6 +7,7 @@ import {
   FetchedEvent as ContextFetchedEvent,
 } from "../../../context/EventContext";
 import { useAuth } from "../../../context/AuthContext";
+import { getApiUrl } from "../../../lib/config";
 import moment from "moment";
 
 interface EventData {
@@ -269,7 +270,7 @@ export default function Page() {
     if (userData && userData.register_number && !authIsLoading) {
       setLoadingUserRegistrations(true);
       fetch(
-        `http://localhost:8000/api/registrations/${userData.register_number}`
+        getApiUrl(`/api/registrations/${userData.register_number}`)
       )
         .then((res) =>
           res.ok ? res.json() : Promise.resolve({ registeredEventIds: [] })
@@ -320,7 +321,7 @@ export default function Page() {
           teamName: null,
           teammates: [{ registerNumber: regNumStr }],
         };
-        const response = await fetch(`http://localhost:8000/api/register`, {
+        const response = await fetch(getApiUrl("/api/register"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),

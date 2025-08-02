@@ -4,12 +4,12 @@ import EventForm from "@/app/_components/Admin/ManageEvent";
 import { EventFormData } from "@/app/lib/eventFormSchema";
 import { SubmitHandler } from "react-hook-form";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { config, getApiUrl } from "../../lib/config";
 
 export default function CreateEventPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const supabase = createClientComponentClient();
-
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const API_URL = config.API_URL;
 
   const handleCreateEvent: SubmitHandler<EventFormData> = async (
     dataFromHookForm

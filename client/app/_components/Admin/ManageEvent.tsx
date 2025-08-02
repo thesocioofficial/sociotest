@@ -12,6 +12,7 @@ import {
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { getApiUrl } from "../../../lib/config";
 
 import {
   EventFormData,
@@ -857,7 +858,7 @@ export default function EventForm({
         .replace(/[^a-z0-9-]/g, "");
 
       const response = await fetch(
-        `http://localhost:8000/api/events/${eventIdSlug}`,
+        getApiUrl(`/api/events/${eventIdSlug}`),
         {
           method: "DELETE",
           headers: {
@@ -939,7 +940,7 @@ export default function EventForm({
         .replace(/\s+/g, "-")
         .replace(/[^a-z0-9-]/g, "");
       const response = await fetch(
-        `http://localhost:8000/api/events/${eventIdSlug}/close`,
+        getApiUrl(`/api/events/${eventIdSlug}/close`),
         {
           method: "POST",
           headers: {

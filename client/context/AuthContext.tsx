@@ -4,10 +4,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Session, User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
+import { config, getApiUrl } from "../lib/config";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://sociotest-production.up.railway.app";
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://sociotest-thesocioofficial.vercel.app";
-const ALLOWED_DOMAIN = "christuniversity.in"; // Keep for client-side checks if needed
+const ALLOWED_DOMAIN = config.ALLOWED_DOMAIN; // Keep for client-side checks if needed
 
 type UserData = {
   id: number;
@@ -122,7 +121,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         is_organiser: user.email?.endsWith("@christuniversity.in"),
       };
 
-      const response = await fetch(`${API_URL}/api/users`, {
+      const response = await fetch(getApiUrl("/api/users"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -145,7 +144,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     try {
-      const response = await fetch(`${API_URL}/api/users/${email}`);
+      const response = await fetch(getApiUrl(`/api/users/${email}`));
       if (!response.ok) {
         if (response.status === 404) {
           console.warn(
@@ -171,7 +170,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${APP_URL}/auth/callback`,
+          redirectTo: `${config.APP_URL}/auth/callback`,
         },
       });
     } catch (error) {
