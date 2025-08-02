@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import ExcelJS from "exceljs";
-import { getApiUrl } from "../../../../lib/config";
+import { getApiUrl } from "@/lib/config";
 
 interface Student {
   id: number;

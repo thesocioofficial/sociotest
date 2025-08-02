@@ -8,7 +8,7 @@ import {
   FetchedEvent as ContextFetchedEvent,
 } from "../../../../context/EventContext";
 import { useAuth } from "../../../../context/AuthContext";
-import { getApiUrl } from "../../../../lib/config";
+import { getApiUrl } from "@/lib/config";
 import moment from "moment";
 
 interface Teammate {

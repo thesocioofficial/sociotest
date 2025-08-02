@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Session, User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
-import { config, getApiUrl } from "../lib/config";
+import { config, getApiUrl } from "@/lib/config";
 
 const ALLOWED_DOMAIN = config.ALLOWED_DOMAIN; // Keep for client-side checks if needed
 

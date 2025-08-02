@@ -4,7 +4,7 @@ import EventForm from "@/app/_components/Admin/ManageEvent";
 import { EventFormData } from "@/app/lib/eventFormSchema";
 import { SubmitHandler } from "react-hook-form";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { config, getApiUrl } from "../../../lib/config";
+import { config, getApiUrl } from "@/lib/config";
 
 export default function CreateEventPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);

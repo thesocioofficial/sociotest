@@ -3,7 +3,7 @@ import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { config, getAppUrl } from "../../../lib/config";
+import { config, getAppUrl } from "@/lib/config";
 
 const ALLOWED_DOMAIN = config.ALLOWED_DOMAIN;
 

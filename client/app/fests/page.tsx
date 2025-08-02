@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import moment from "moment";
-import { getApiUrl } from "../../lib/config";
+import { getApiUrl } from "@/lib/config";
 
 import { FestCard } from "../_components/Discover/FestCard";
 import Footer from "../_components/Home/Footer";

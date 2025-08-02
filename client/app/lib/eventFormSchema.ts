@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { getApiUrl } from "../../lib/config";
+import { getApiUrl } from "@/lib/config";
 
 const MAX_FILE_SIZE_BANNER = 2 * 1024 * 1024; // 2MB
 const MAX_FILE_SIZE_IMAGE = 3 * 1024 * 1024; // 3MB

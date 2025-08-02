@@ -12,7 +12,7 @@ import {
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { getApiUrl } from "../../../lib/config";
+import { getApiUrl } from "@/lib/config";
 
 import {
   EventFormData,
