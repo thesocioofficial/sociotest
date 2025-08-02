@@ -5,8 +5,8 @@ export const config = {
   APP_URL: process.env.NEXT_PUBLIC_APP_URL || "https://sociotest.vercel.app",
   
   // Supabase Configuration
-  SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || "https://vkappuaapscvteexogtp.supabase.co",
+  SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrYXBwdWFhcHNjdnRlZXhvZ3RwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYyNTQwOTIsImV4cCI6MjA2MTgzMDA5Mn0.ILq6Aho_0xGW3JtbhXWpB-0AkJAN70-3q2abplZ3fbA",
   
   // Authentication
   ALLOWED_DOMAIN: "christuniversity.in",

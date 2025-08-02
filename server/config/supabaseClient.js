@@ -9,9 +9,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Fallback to hardcoded values if Railway environment variables are not available  
 // WARNING: This is a temporary fix - Railway should inject these variables
-const supabaseUrl = process.env.SUPABASE_URL || 'https://tdxwomjznjgacfirujzb.supabase.co';
-// Using the service role key from your Railway dashboard
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkeHdvbWp6bmpnYWNmaXJ1anpiIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczODQwMzMwNSwiZXhwIjoyMDUzOTc5MzA1fQ.nN3d6u8+RGq0VpsTSzDMCY5JdgPHCz9dpkYGMRSWL4';
+const supabaseUrl = process.env.SUPABASE_URL || 'https://vkappuaapscvteexogtp.supabase.co';
+// Using the service role key from your Supabase dashboard
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrYXBwdWFhcHNjdnRlZXhvZ3RwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NjI1NDA5MiwiZXhwIjoyMDYxODMwMDkyfQ.niUv-xWTFnPpCwDP2p1tLAjciaLqA_miH5KrN6UF3u4';
 
 if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
   console.warn("⚠️  WARNING: Using fallback Supabase credentials - Railway environment variables not detected!");
