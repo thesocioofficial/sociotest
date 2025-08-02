@@ -22,8 +22,10 @@ export default function Footer() {
                 />
               </Link>
               <p className="text-[#1e1e1e86] text-sm mt-2 sm:text-base mb-4 sm:mb-6 font-medium leading-snug">
-                Lorem ipsum dolor sit amet,
-                <br /> consect adipiscing elit.
+                Your one-stop platform for discovering and participating in all Christ University events, festivals, and activities.
+                <br />
+                <span className="mt-2 block">📧 thesocio.blr@gmail.com</span>
+                <span className="block">📞 8861330665</span>
               </p>
 
               <div className="flex gap-3 sm:gap-4">

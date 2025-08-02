@@ -85,19 +85,19 @@ const Hero = () => {
       <div className="w-full sm:w-1/2 mb-8 sm:mb-0">
         <div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#154CB3] leading-tight">
-            Redefine every campus event like never before to&nbsp;
+            Discover Christ University events and&nbsp;
             {startTyping ? (
               <TypeAnimation
                 sequence={[
-                  "discover.",
+                  "connect.",
                   2000,
                   "",
                   500,
-                  "register.",
+                  "participate.",
                   2000,
                   "",
                   500,
-                  "experience.",
+                  "excel.",
                   2000,
                   "",
                   500,
@@ -118,8 +118,7 @@ const Hero = () => {
             )}
           </h1>
           <p className="mt-4 text-[#1e1e1eb6] text-base sm:text-lg font-medium">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque ipsa
-            modi aut voluptate ut fugit odit tenetur ratione nobis vel.
+            Your one-stop platform for discovering, registering, and managing all Christ University events, festivals, and activities across all campuses.
           </p>
         </div>
         <div className="flex mt-4 sm:mt-6 gap-2 sm:gap-3 items-center select-none flex-row">

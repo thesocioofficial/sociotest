@@ -68,13 +68,13 @@ const CTA = () => {
       className="py-12 sm:py-16 md:py-24 w-full flex flex-col items-center justify-center mt-8 sm:mt-12 md:mt-16 mb-8 bg-gradient-to-b from-[#063168] to-[#3D75BD]"
     >
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#fff] text-center leading-tight px-4">
-        Find what's happening. <br className="hidden md:flex" /> Claim your spot
-        and experience more.
+        Ready to dive into Christ University events? <br className="hidden md:flex" /> 
+        Start your journey today.
       </h1>
       <p className="mt-4 sm:mt-6 text-[#ffffff97] text-base sm:text-lg text-center px-4">
-        Join thousands of students who are already discovering, attending, and{" "}
+        Join thousands of Christ University students who are already discovering, participating in, and{" "}
         <br className="hidden md:flex" />
-        sharing campus events through SOCIO.
+        sharing amazing campus events, festivals, and activities through SOCIO.
       </p>
       <div className="mt-6 sm:mt-8 flex flex-row sm:flex-row gap-4 px-4">
         <button
