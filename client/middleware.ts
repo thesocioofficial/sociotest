@@ -8,12 +8,9 @@ export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const supabase = createMiddlewareClient({ req, res });
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
   const { pathname } = req.nextUrl;
 
+  // Skip middleware for static files and Next.js internals
   if (
     pathname.startsWith("/_next/") ||
     pathname.startsWith("/static/") ||
@@ -22,6 +19,7 @@ export async function middleware(req: NextRequest) {
     return res;
   }
 
+  // Always allow public paths without authentication check
   const isPublic = (currentPath: string) =>
     publicPaths.some(
       (publicPath) =>
@@ -30,35 +28,52 @@ export async function middleware(req: NextRequest) {
           currentPath.startsWith(publicPath.slice(0, -2)))
     );
 
-  if (!session && !isPublic(pathname)) {
-    const redirectUrl = req.nextUrl.clone();
-    redirectUrl.pathname = "/auth";
-    return NextResponse.redirect(redirectUrl);
+  if (isPublic(pathname)) {
+    return res;
   }
 
-  if (
-    session &&
-    (pathname.startsWith("/manage") ||
-      pathname.startsWith("/create") ||
-      pathname.startsWith("/edit"))
-  ) {
-    if (!session.user?.email) {
-      const errorRedirectUrl = req.nextUrl.clone();
-      errorRedirectUrl.pathname = "/error";
-      return NextResponse.redirect(errorRedirectUrl);
-    }
+  // Only check authentication for non-public paths
+  try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
-    const { data: userData, error } = await supabase
-      .from("users")
-      .select("is_organiser")
-      .eq("email", session.user.email)
-      .single();
-
-    if (error || !userData || !userData.is_organiser) {
+    // If no session and trying to access protected route, redirect to auth
+    if (!session) {
       const redirectUrl = req.nextUrl.clone();
-      redirectUrl.pathname = "/error";
+      redirectUrl.pathname = "/auth";
       return NextResponse.redirect(redirectUrl);
     }
+
+    // For organizer-only routes, check permissions
+    if (
+      session &&
+      (pathname.startsWith("/manage") ||
+        pathname.startsWith("/create") ||
+        pathname.startsWith("/edit"))
+    ) {
+      if (!session.user?.email) {
+        const errorRedirectUrl = req.nextUrl.clone();
+        errorRedirectUrl.pathname = "/error";
+        return NextResponse.redirect(errorRedirectUrl);
+      }
+
+      const { data: userData, error } = await supabase
+        .from("users")
+        .select("is_organiser")
+        .eq("email", session.user.email)
+        .single();
+
+      if (error || !userData || !userData.is_organiser) {
+        const redirectUrl = req.nextUrl.clone();
+        redirectUrl.pathname = "/error";
+        return NextResponse.redirect(redirectUrl);
+      }
+    }
+  } catch (error) {
+    console.error("Middleware error:", error);
+    // On error, allow the request to proceed to avoid breaking the flow
+    return res;
   }
 
   return res;
