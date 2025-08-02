@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const ALLOWED_DOMAIN = "christuniversity.in";
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://sociotest-thesocioofficial.vercel.app";
 
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
