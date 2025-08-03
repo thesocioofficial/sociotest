@@ -10,6 +10,7 @@ import {
 } from "../../context/EventContext";
 import moment from "moment";
 import Link from "next/link";
+import { getApiUrl } from "../../lib/config";
 
 interface Fest {
   fest_id: string;
@@ -43,7 +44,7 @@ const Page = () => {
     }
     setIsLoadingFests(true);
     setFestsError(null);
-    fetch("http://localhost:8000/api/fests")
+    fetch(getApiUrl("/api/fests"))
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);

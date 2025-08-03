@@ -8,6 +8,7 @@ import {
   useEvents,
   FetchedEvent as ContextFetchedEvent,
 } from "@/context/EventContext";
+import { getApiUrl } from "../../../lib/config";
 
 interface FestDataFromAPI {
   fest_id: string;
@@ -60,7 +61,7 @@ const FestPage = () => {
     setLoadingFestDetails(true);
     setErrorFestDetails(null);
 
-    fetch(`http://localhost:8000/api/fests/${festIdSlug}`)
+    fetch(getApiUrl(`/api/fests/${festIdSlug}`))
       .then((res) => {
         if (!res.ok) {
           if (res.status === 404) {

@@ -4,9 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/app/logo.svg";
 import { useAuth } from "@/context/AuthContext";
+import { useState } from "react";
 
 export default function NavigationBar() {
   const { session, userData, isLoading, signInWithGoogle, signOut } = useAuth();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleSignIn = async () => {
     await signInWithGoogle();
@@ -14,6 +16,10 @@ export default function NavigationBar() {
 
   const handleSignOut = async () => {
     await signOut();
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   if (isLoading) {
@@ -41,7 +47,47 @@ export default function NavigationBar() {
           />
         </Link>
 
+        {/* Navigation Links - Center */}
+        {session && userData && (
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="/discover" className="font-medium hover:text-[#154cb3df] transition-colors duration-200">
+              Discover
+            </Link>
+            <Link href="/events" className="font-medium hover:text-[#154cb3df] transition-colors duration-200">
+              Events
+            </Link>
+            <Link href="/fests" className="font-medium hover:text-[#154cb3df] transition-colors duration-200">
+              Fests
+            </Link>
+            <Link href="/clubs" className="font-medium hover:text-[#154cb3df] transition-colors duration-200">
+              Clubs
+            </Link>
+            {userData.is_organiser && (
+              <>
+                <Link href="/create/event" className="font-medium hover:text-[#154cb3df] transition-colors duration-200">
+                  Create Event
+                </Link>
+                <Link href="/create/fest" className="font-medium hover:text-[#154cb3df] transition-colors duration-200">
+                  Create Fest
+                </Link>
+              </>
+            )}
+          </div>
+        )}
+
         <div className="flex gap-2 items-center">
+          {/* Mobile Menu Button */}
+          {session && userData && (
+            <button 
+              onClick={toggleMobileMenu}
+              className="md:hidden flex flex-col gap-1 p-2 mr-2"
+              aria-label="Toggle mobile menu"
+            >
+              <span className={`w-5 h-0.5 bg-[#154CB3] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+              <span className={`w-5 h-0.5 bg-[#154CB3] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`w-5 h-0.5 bg-[#154CB3] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+            </button>
+          )}
           {session && userData ? (
             userData.is_organiser ? (
               <div className="flex gap-4 items-center">
@@ -126,6 +172,61 @@ export default function NavigationBar() {
           )}
         </div>
       </nav>
+      
+      {/* Mobile Menu Dropdown */}
+      {session && userData && isMobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-[#3030304b] px-6 py-4">
+          <div className="flex flex-col gap-4">
+            <Link 
+              href="/discover" 
+              className="font-medium text-[#154CB3] hover:text-[#154cb3df] transition-colors duration-200"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Discover
+            </Link>
+            <Link 
+              href="/events" 
+              className="font-medium text-[#154CB3] hover:text-[#154cb3df] transition-colors duration-200"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Events
+            </Link>
+            <Link 
+              href="/fests" 
+              className="font-medium text-[#154CB3] hover:text-[#154cb3df] transition-colors duration-200"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Fests
+            </Link>
+            <Link 
+              href="/clubs" 
+              className="font-medium text-[#154CB3] hover:text-[#154cb3df] transition-colors duration-200"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Clubs
+            </Link>
+            {userData.is_organiser && (
+              <>
+                <Link 
+                  href="/create/event" 
+                  className="font-medium text-[#154CB3] hover:text-[#154cb3df] transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Create Event
+                </Link>
+                <Link 
+                  href="/create/fest" 
+                  className="font-medium text-[#154CB3] hover:text-[#154cb3df] transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Create Fest
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+      
       <hr className="border-[#3030304b]" />
     </>
   );

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
+import { getApiUrl } from "../../lib/config";
 
 interface DisplayableEvent {
   id: string;
@@ -90,7 +91,7 @@ const StudentProfile = () => {
           setIsLoadingRegisteredEvents(true);
           try {
             const response = await fetch(
-              `http://localhost:8000/api/registrations/user/` +
+              getApiUrl("/api/registrations/user/") +
                 userData.register_number +
                 `/events`
             );

@@ -10,6 +10,7 @@ import {
 } from "@/app/lib/eventFormSchema";
 import { SubmitHandler } from "react-hook-form";
 import { useAuth } from "@/context/AuthContext";
+import { getApiUrl } from "../../../lib/config";
 
 export default function EditEventPage() {
   const { session, userData, isLoading: authIsLoading } = useAuth();
@@ -61,7 +62,7 @@ export default function EditEventPage() {
       let response: Response | undefined = undefined;
       try {
         response = await fetch(
-          `http://localhost:8000/api/events/${eventIdSlug}`
+          getApiUrl(`/api/events/${eventIdSlug}`)
         );
 
         // Try to clone the response to read text, as .json() consumes the body
@@ -349,7 +350,7 @@ export default function EditEventPage() {
       }
 
       response = await fetch(
-        `http://localhost:8000/api/events/${eventIdSlug}`,
+        getApiUrl(`/api/events/${eventIdSlug}`),
         {
           method: "PUT",
           body: payload,

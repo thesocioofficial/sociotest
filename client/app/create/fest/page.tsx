@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "../../../context/AuthContext"; // Adjust path as needed
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { getApiUrl } from "../../../lib/config";
 const supabase = createClientComponentClient();
 
 const formatDateToYYYYMMDD = (date: Date): string => {
@@ -773,7 +774,7 @@ export default function CreateFest(props: CreateFestProps = {}) {
         setErrors({});
         try {
           const response = await fetch(
-            `http://localhost:8000/api/fests/${festIdFromPath}`,
+            getApiUrl(`/api/fests/${festIdFromPath}`),
             {
               headers: {
                 Authorization: `Bearer ${session.access_token}`,
@@ -834,7 +835,7 @@ export default function CreateFest(props: CreateFestProps = {}) {
     setErrors({});
     try {
       const response = await fetch(
-        `http://localhost:8000/api/fests/${festIdFromPath}`,
+        getApiUrl(`/api/fests/${festIdFromPath}`),
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${session?.access_token}` },
@@ -1182,7 +1183,7 @@ export default function CreateFest(props: CreateFestProps = {}) {
       let response;
       if (isEditMode && festIdFromPath) {
         response = await fetch(
-          `http://localhost:8000/api/fests/${festIdFromPath}`,
+          getApiUrl(`/api/fests/${festIdFromPath}`),
           {
             method: "PUT",
             headers: {
@@ -1193,7 +1194,7 @@ export default function CreateFest(props: CreateFestProps = {}) {
           }
         );
       } else {
-        response = await fetch("http://localhost:8000/api/fests", {
+        response = await fetch(getApiUrl("/api/fests"), {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

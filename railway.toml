@@ -5,8 +5,8 @@
 [deploy]
   startCommand = "cd server && npm start"
   healthcheckPath = "/api/health"
-  healthcheckTimeout = 30
+  healthcheckTimeout = 300
   restartPolicyType = "on_failure"
 
-# Ensure variables are available
+# Environment variables will be set in Railway dashboard
 [variables]

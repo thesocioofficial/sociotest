@@ -3,6 +3,7 @@ import CreateFest from "@/app/create/fest/page"; // Assuming this is the correct
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useAuth } from "../../../../context/AuthContext"; // Adjust path
+import { getApiUrl } from "../../../lib/config";
 
 interface FestDataForEdit {
   title: string;
@@ -42,7 +43,7 @@ const EditPage = () => {
         setErrorMessage(null);
         try {
           const response = await fetch(
-            `http://localhost:8000/api/fests/${festId}`,
+            getApiUrl(`/api/fests/${festId}`),
             {
               headers: { Authorization: `Bearer ${session.access_token}` },
             }
