@@ -11,11 +11,5 @@
     "app/auth/callback/route.ts": {
       "maxDuration": 30
     }
-  },
-  "rewrites": [
-    {
-      "source": "/discover",
-      "destination": "/Discover"
-    }
-  ]
+  }
 }

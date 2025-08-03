@@ -25,9 +25,9 @@ export default function NavigationBar() {
   if (isLoading) {
     return (
       <>
-        <nav className="w-full flex justify-between items-center pt-8 pb-7 px-12 text-[#154CB3] select-none">
-          <div className="h-10 w-24"></div>
-          <div className="h-10 w-24"></div>
+        <nav className="w-full flex justify-between items-center pt-8 pb-7 px-6 md:px-12 text-[#154CB3] select-none">
+          <div className="h-10 w-24 bg-gray-200 animate-pulse rounded"></div>
+          <div className="h-10 w-24 bg-gray-200 animate-pulse rounded"></div>
         </nav>
         <hr className="border-[#3030304b]" />
       </>
