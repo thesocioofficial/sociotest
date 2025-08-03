@@ -270,19 +270,23 @@ export const categories = [
   { value: "innovation", label: "Innovation" },
 ];
 
-let res;
-try {
-  const response = await fetch(getApiUrl("/api/fests"));
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+// Function to fetch fest events dynamically
+export const getFestEvents = async () => {
+  try {
+    const response = await fetch(getApiUrl("/api/fests"));
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const res = await response.json();
+    return res?.fests?.map((fest: any) => ({
+      value: fest.fest_title,
+      label: fest.fest_title,
+    })) || [];
+  } catch (error) {
+    console.error("There was a problem with the fetch operation:", error);
+    return [];
   }
-  res = await response.json();
-} catch (error) {
-  console.error("There was a problem with the fetch operation:", error);
-}
+};
 
-export const festEvents =
-  res?.fests?.map((fest: any) => ({
-    value: fest.fest_title,
-    label: fest.fest_title,
-  })) || [];
+// Default export for backward compatibility (empty array)
+export const festEvents: { value: string; label: string; }[] = [];

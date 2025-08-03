@@ -19,7 +19,7 @@ import {
   eventFormSchema,
   departments as departmentOptions,
   categories as categoryOptions,
-  festEvents as festEventOptions,
+  getFestEvents,
 } from "@/app/lib/eventFormSchema";
 
 import {
@@ -774,6 +774,23 @@ export default function EventForm({
     React.useState(false);
   const [showRegistrationsClosedModal, setShowRegistrationsClosedModal] =
     React.useState(false);
+  const [festEventOptions, setFestEventOptions] = useState<
+    { value: string; label: string }[]
+  >([]);
+
+  // Load fest events on mount
+  useEffect(() => {
+    const loadFestEvents = async () => {
+      try {
+        const events = await getFestEvents();
+        setFestEventOptions(events);
+      } catch (error) {
+        console.error("Failed to load fest events:", error);
+        setFestEventOptions([]);
+      }
+    };
+    loadFestEvents();
+  }, []);
 
   useEffect(() => {
     if (

@@ -82,7 +82,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Unexpected error in auth callback:", error);
     const supabaseClient = createRouteHandlerClient({
-      cookies: cookies(),
+      cookies,
     });
     await supabaseClient.auth.signOut();
     return NextResponse.redirect(`${getAppUrl()}/?error=callback_exception&details=${encodeURIComponent(String(error))}`);
