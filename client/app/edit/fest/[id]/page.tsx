@@ -3,7 +3,7 @@ import CreateFest from "@/app/create/fest/page"; // Assuming this is the correct
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useAuth } from "../../../../context/AuthContext"; // Adjust path
-import { getApiUrl } from "../../../lib/config";
+import { getApiUrl } from "@/lib/config";
 
 interface FestDataForEdit {
   title: string;

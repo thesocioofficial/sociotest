@@ -62,16 +62,6 @@ export default function NavigationBar() {
             <Link href="/clubs" className="font-medium hover:text-[#154cb3df] transition-colors duration-200">
               Clubs
             </Link>
-            {userData.is_organiser && (
-              <>
-                <Link href="/create/event" className="font-medium hover:text-[#154cb3df] transition-colors duration-200">
-                  Create Event
-                </Link>
-                <Link href="/create/fest" className="font-medium hover:text-[#154cb3df] transition-colors duration-200">
-                  Create Fest
-                </Link>
-              </>
-            )}
           </div>
         )}
 
@@ -205,24 +195,6 @@ export default function NavigationBar() {
             >
               Clubs
             </Link>
-            {userData.is_organiser && (
-              <>
-                <Link 
-                  href="/create/event" 
-                  className="font-medium text-[#154CB3] hover:text-[#154cb3df] transition-colors duration-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Create Event
-                </Link>
-                <Link 
-                  href="/create/fest" 
-                  className="font-medium text-[#154CB3] hover:text-[#154cb3df] transition-colors duration-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Create Fest
-                </Link>
-              </>
-            )}
           </div>
         </div>
       )}

@@ -10,7 +10,7 @@ import {
 } from "@/app/lib/eventFormSchema";
 import { SubmitHandler } from "react-hook-form";
 import { useAuth } from "@/context/AuthContext";
-import { getApiUrl } from "../../../lib/config";
+import { getApiUrl } from "@/lib/config";
 
 export default function EditEventPage() {
   const { session, userData, isLoading: authIsLoading } = useAuth();

@@ -10,7 +10,7 @@ import {
 } from "../../context/EventContext";
 import moment from "moment";
 import Link from "next/link";
-import { getApiUrl } from "../../lib/config";
+import { getApiUrl } from "@/lib/config";
 
 interface Fest {
   fest_id: string;

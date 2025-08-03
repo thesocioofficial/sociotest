@@ -8,7 +8,7 @@ import {
   useEvents,
   FetchedEvent as ContextFetchedEvent,
 } from "@/context/EventContext";
-import { getApiUrl } from "../../../lib/config";
+import { getApiUrl } from "@/lib/config";
 
 interface FestDataFromAPI {
   fest_id: string;

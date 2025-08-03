@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "../../../context/AuthContext"; // Adjust path as needed
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { getApiUrl } from "../../../lib/config";
+import { getApiUrl } from "@/lib/config";
 const supabase = createClientComponentClient();
 
 const formatDateToYYYYMMDD = (date: Date): string => {

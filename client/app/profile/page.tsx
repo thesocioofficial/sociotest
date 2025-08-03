@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
-import { getApiUrl } from "../../lib/config";
+import { getApiUrl } from "@/lib/config";
 
 interface DisplayableEvent {
   id: string;
