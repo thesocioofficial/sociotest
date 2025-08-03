@@ -14,7 +14,7 @@ import {
   useEvents,
   FetchedEvent as ContextFetchedEvent,
 } from "../../context/EventContext";
-import { config, getApiUrl } from "@/lib/config";
+import { config, getApiUrl } from "../../lib/config";
 
 const API_URL = config.API_URL;
 

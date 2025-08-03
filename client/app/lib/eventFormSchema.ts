@@ -273,17 +273,31 @@ export const categories = [
 // Function to fetch fest events dynamically
 export const getFestEvents = async () => {
   try {
-    const response = await fetch(getApiUrl("/api/fests"));
+    // Add timeout to prevent hanging requests
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+    
+    const response = await fetch(getApiUrl("/api/fests"), {
+      signal: controller.signal,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    
+    clearTimeout(timeoutId);
+    
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    
     const res = await response.json();
     return res?.fests?.map((fest: any) => ({
       value: fest.fest_title,
       label: fest.fest_title,
     })) || [];
   } catch (error) {
-    console.error("There was a problem with the fetch operation:", error);
+    console.error("Error fetching fest events:", error);
+    // Return empty array as fallback
     return [];
   }
 };

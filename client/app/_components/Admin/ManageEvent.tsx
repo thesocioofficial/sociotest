@@ -12,7 +12,7 @@ import {
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { getApiUrl } from "@/lib/config";
+import { getApiUrl } from "../../../lib/config";
 
 import {
   EventFormData,
@@ -778,18 +778,48 @@ export default function EventForm({
     { value: string; label: string }[]
   >([]);
 
-  // Load fest events on mount
+  // Load fest events on mount - with enhanced error handling
   useEffect(() => {
+    let isMounted = true;
+    
     const loadFestEvents = async () => {
       try {
+        console.log("Starting to load fest events...");
+        
+        // Check if we can import the function
+        if (typeof getFestEvents !== 'function') {
+          throw new Error('getFestEvents is not a function');
+        }
+        
         const events = await getFestEvents();
-        setFestEventOptions(events);
+        
+        // Only update state if component is still mounted
+        if (isMounted) {
+          console.log("Fest events loaded successfully:", events);
+          setFestEventOptions(events || []);
+        }
       } catch (error) {
         console.error("Failed to load fest events:", error);
-        setFestEventOptions([]);
+        
+        // Only update state if component is still mounted
+        if (isMounted) {
+          setFestEventOptions([]);
+        }
       }
     };
-    loadFestEvents();
+    
+    // Add a small delay and check if component is still mounted
+    const timeoutId = setTimeout(() => {
+      if (isMounted) {
+        loadFestEvents();
+      }
+    }, 100);
+    
+    // Cleanup function
+    return () => {
+      isMounted = false;
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   useEffect(() => {
