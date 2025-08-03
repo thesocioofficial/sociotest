@@ -25,8 +25,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${getAppUrl()}/?error=no_code`);
   }
 
-  const cookieStore = cookies();
-  const supabase = createRouteHandlerClient({ cookies: cookieStore });
+  const supabase = createRouteHandlerClient({ cookies });
 
   try {
     console.log("Exchanging code for session...");
