@@ -56,5 +56,25 @@ PORT=3001
 - **Backend**: Deployed on Railway
 - **Database**: Supabase (managed)
 
+## 📚 Additional Resources
+
+- **[Hosting Analysis & Recommendations](./HOSTING_ANALYSIS.md)** - Complete analysis of your current hosting stack and alternatives
+- **[Migration Guide](./MIGRATION_GUIDE.md)** - Step-by-step instructions for migrating to different hosting solutions
+- **[Cost Optimization Guide](./COST_OPTIMIZATION.md)** - Tips to reduce hosting costs while maintaining performance
+
+## 💰 Hosting Cost Summary
+
+**Current Setup**: $5/month
+- Vercel (Frontend): **Free**
+- Railway (Backend): **$5/month** 
+- Supabase (Database): **Free**
+
+**Alternatives**:
+- Netlify Functions: **$0/month** (requires backend refactoring)
+- Self-hosted VPS: **$4-6/month** (requires server management)
+- Firebase: **$0/month** (requires significant migration)
+
+**Recommendation**: Keep current setup - it's optimized and cost-effective!
+
 ## 📧 Contact
 For questions or support, reach out to the team.
